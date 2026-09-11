@@ -50,6 +50,16 @@ jobs:
               echo "Skip ${env_name} (not provided -> will be null for the process)"
             fi
           done
+
+
+      - name: Set TESTCONTAINER_DOCKER_IMAGES_TAG if provided
+        run: |
+          TESTCONTAINER_DOCKER_IMAGES_TAG="${{ vars.TESTCONTAINER_DOCKER_IMAGES_TAG }}"
+          if [ -n "$TESTCONTAINER_DOCKER_IMAGES_TAG" ]; then
+            echo "TESTCONTAINER_DOCKER_IMAGES_TAG=${TESTCONTAINER_DOCKER_IMAGES_TAG}" >> "$GITHUB_ENV"
+          else
+            echo "Skip TESTCONTAINER_DOCKER_IMAGES_TAG"
+          fi
           
       - name: Checkout repository
         uses: actions/checkout@v4
