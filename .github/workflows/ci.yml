@@ -7,40 +7,6 @@ on:
   repository_dispatch:
     types: [run-e2e-tests]
   workflow_dispatch:
-    inputs:
-      gateway_tag:
-        description: 'Docker tag for gateway service'
-        required: false
-        type: string
-      auth_service_tag:
-        description: 'Docker tag for auth-service'
-        required: false
-        type: string
-      data_importer_tag:
-        description: 'Docker tag for data-importer'
-        required: false
-        type: string
-      profile_service_tag:
-        description: 'Docker tag for profile-service'
-        required: false
-        type: string
-      project_service_tag:
-        description: 'Docker tag for project-service'
-        required: false
-        type: string
-      mentor_service_tag:
-        description: 'Docker tag for mentor-service'
-        required: false
-        type: string
-      job_market_analytics_service_tag:
-        description: 'Docker tag for job-market-analytics-service'
-        required: false
-        type: string
-      telegram_bot_adapter_tag:
-        description: 'Docker tag for telegram-bot-adapter'
-        required: false
-        type: string
-
 
 permissions:
   contents: read
@@ -114,7 +80,6 @@ jobs:
       - name: Run E2E tests
         env:
           
-          TESTCONTAINER_DOCKER_IMAGES_TAG: dev
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
           HH_APP_ACCESS_TOKEN: ${{ secrets.HH_APP_ACCESS_TOKEN }}
